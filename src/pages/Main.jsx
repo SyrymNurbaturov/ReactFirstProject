@@ -9,9 +9,9 @@ const Main = () =>{
             }}
           >
             <Breadcrumb.Item>Main</Breadcrumb.Item>
-          </Breadcrumb>
+            </Breadcrumb>
           
-          <h1>Main Page</h1>
+          <h1>Content</h1>
           </>
     )
 }
