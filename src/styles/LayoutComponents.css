@@ -26,3 +26,16 @@
   .registrationLink{
     color: #D2D2D2;
   }
+
+  .postLink{
+    color: #D2D2D2;
+  }
+
+  .registration{
+    width: 90px;
+  }
+
+  .breadcrumbs{
+    margin: "16px 0";
+    margin-bottom: 1rem;
+  }

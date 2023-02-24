@@ -1,16 +1,18 @@
 import React from "react";
 import { Breadcrumb} from "antd";
+import { Link } from "react-router-dom"
 const Main = () =>{
     return(
         <>
-        <Breadcrumb
-            style={{
-              margin: "16px 0",
-            }}
-          >
-            <Breadcrumb.Item>Main</Breadcrumb.Item>
-            </Breadcrumb>
-          
+        <Breadcrumb className="breadcrumbs">
+    <Breadcrumb.Item>
+      <Link  to="/">
+            Main page
+          </Link>
+    </Breadcrumb.Item>
+        </Breadcrumb>
+
+
           <h1>Content</h1>
           </>
     )
