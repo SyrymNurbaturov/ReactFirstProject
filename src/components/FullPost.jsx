@@ -1,19 +1,24 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "../styles/FullPost.css";
 import axios from "axios";
 import { Pagination } from 'antd';
-const baseURL = "http://127.0.0.1:8000/blog/api/";
 
 function FullPost() {
   const [post, setPost] = React.useState(null);
-  React.useEffect(() => {
+  const [page, setPage] = React.useState(1);
+  
+  useEffect(() => {
+    const baseURL = `http://127.0.0.1:8000/blog/api/?page_size=${page}`;
     axios.get(baseURL).then((response) => {
       setPost(response.data);
-      console.log(response.data);
     });
-  }, []);
+  }, [page]);
 
+  function handlePage(activePage) {
+    setPage(activePage)
+  }
   
+
   if (!post) return null;
   return (
     <>
@@ -33,7 +38,10 @@ function FullPost() {
             </div>
           );
         })}
-        <Pagination defaultCurrent={1} total={50} />
+        <Pagination onChange={handlePage}
+                defaultCurrent={page}
+                total={11}
+                />
     </>
   );
 }

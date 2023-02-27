@@ -9,22 +9,8 @@ const onFinishFailed = (errorInfo) => {
   console.log("Failed:", errorInfo);
 };
 const Login = () => {
-  // const [username, setUsername] = useState('');
-  // const [password, setPassword] = useState('');
   
-  // const handleUsernameChange = (e) => {
-  //   return (
-  //     setUsername(e)
-  //   )
-    
-  // }
-  // const handlePasswordChange = (e) => {
-  //   return (
-  //     setPassword(e)
-  //   )
-    
-  // }
-
+  
   return (
     <>
       <Breadcrumb className="breadcrumbs" separator="\">

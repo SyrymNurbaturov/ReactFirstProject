@@ -2,10 +2,22 @@
 // import "../styles/FullPost.css";
 // import axios from "axios";
 // import { Pagination } from 'antd';
-// const baseURL = "http://127.0.0.1:8000/blog/api/";
+
+// const baseURL = "http://127.0.0.1:8000/blog/api/?page_size=1";
 
 // function FullPost() {
 //   const [post, setPost] = React.useState(null);
+//   state = {
+//     page: [],
+//     pages: []
+//   }
+  
+//   function handlePage(activePage) {
+//     let pagenum = activePage;
+//     let pagestring = pagenum.toString();
+//     paginationUrl = 'http://127.0.0.1:8000/blog/api/?page_size=' + pagestring;
+//   }
+
 //   React.useEffect(() => {
 //     axios.get(baseURL).then((response) => {
 //       setPost(response.data);
@@ -33,7 +45,7 @@
 //             </div>
 //           );
 //         })}
-//         <Pagination defaultCurrent={1} total={50} />
+//         <Pagination defaultCurrent={1} total={20} />
 //     </>
 //   );
 // }
