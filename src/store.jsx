@@ -1,53 +1,112 @@
-// import React from "react";
-// import "../styles/FullPost.css";
-// import axios from "axios";
-// import { Pagination } from 'antd';
-
-// const baseURL = "http://127.0.0.1:8000/blog/api/?page_size=1";
-
-// function FullPost() {
-//   const [post, setPost] = React.useState(null);
-//   state = {
-//     page: [],
-//     pages: []
-//   }
+// import {
+//     LaptopOutlined,
+//     NotificationOutlined,
+//     UserOutlined,
+//   } from "@ant-design/icons";
+//   import { Breadcrumb, Layout, Menu, theme } from "antd";
+//   import React from "react";
+//   import { Link } from "react-router-dom";
+//   import "../styles/LayoutComponents.css";
+//   import logo from "../logo.svg";
+//   const { Header, Content, Sider } = Layout;
   
-//   function handlePage(activePage) {
-//     let pagenum = activePage;
-//     let pagestring = pagenum.toString();
-//     paginationUrl = 'http://127.0.0.1:8000/blog/api/?page_size=' + pagestring;
-//   }
-
-//   React.useEffect(() => {
-//     axios.get(baseURL).then((response) => {
-//       setPost(response.data);
-//       console.log(response.data);
-//     });
-//   }, []);
-
-  
-//   if (!post) return null;
-//   return (
-//     <>
-//         {post.map((p, index) => {
-//           return (
-//             <div key={index}>
-//             <h2>{p.title}</h2>
-//             <div className="row">
-//             <div className="leftcolumn">
-//                 <div className="card">
-//                 <h2>Author: {p.author}</h2>
-//                 <h5>{p.body}</h5>
-//                 <h5>Published: {p.publish}</h5>
-//                 </div>
-//             </div>
-//             </div>
-//             </div>
-//           );
-//         })}
-//         <Pagination defaultCurrent={1} total={20} />
-//     </>
+//   const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
+//     (icon, index) => {
+//       const key = String(index + 1);
+//       return {
+//         key: `sub${key}`,
+//         icon: React.createElement(icon),
+//         label: `subnav ${key}`,
+//         children: new Array(4).fill(null).map((_, j) => {
+//           const subKey = index * 4 + j + 1;
+//           const post = <Link className="postLink" to="/post">
+//           Post
+//         </Link>
+//           return {
+//             post: post,
+//             key: subKey,
+//             label: `option${subKey}`,
+//           };
+//         }),
+      
+//       };
+//     }
 //   );
-// }
-
-// export default FullPost;
+//   const LayoutComponents = (props) => {
+//     const { children } = props;
+//     const {
+//       token: { colorBgContainer },
+//     } = theme.useToken();
+//     return (
+//       <Layout>
+//         <Header className="header">
+//           <div className="logo" />
+//           <Link to="/">
+//             <img
+//               src={logo}
+//               className="logoImage"
+//               width="60"
+//               height="50"
+//               alt="logo"
+//               style={{ alignSelf: "center" }}
+//             />
+//           </Link>
+//           <div className="login">
+//             <Link className="loginLink" to="/login">
+//               Login
+//             </Link>
+//           </div>
+//           <div className="registration">
+//             <Link className="registrationLink" to="/registration">
+//               Registration
+//             </Link>
+//           </div>
+//           <div>
+//           <Link className="postLink" to="/post">
+//           Post
+//         </Link>
+//           </div>
+//           <Breadcrumb />
+//         </Header>
+        
+//         <Layout>
+//           <Sider
+//             width={200}
+//             style={{
+//               background: colorBgContainer,
+//             }}
+//           >
+//             <Menu
+//               mode="inline"
+//               defaultSelectedKeys={["1"]}
+//               defaultOpenKeys={["sub1"]}
+//               style={{
+//                 height: "100%",
+//                 borderRight: 0,
+//               }}
+//               items={items2}
+//             />
+//           </Sider>
+//           <Layout
+//             style={{
+//               padding: "0 24px 24px",
+//             }}
+//           >
+  
+//             <Content
+//               style={{
+//                 padding: 24,
+//                 margin: 0,
+//                 minHeight: 280,
+//                 background: colorBgContainer,
+//               }}
+//             >
+//               {children}
+//             </Content>
+//           </Layout>
+//         </Layout>
+//       </Layout>
+//     );
+//   };
+//   export default LayoutComponents;
+  

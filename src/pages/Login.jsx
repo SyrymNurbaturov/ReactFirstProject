@@ -1,29 +1,45 @@
-import React, {useState} from "react";
-import { Breadcrumb, Button, Checkbox, Form, Input } from "antd";
+import React, { useState } from "react";
+import { Button, Form, Input } from "antd";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-const onFinish = (values) => {
-  console.log("Success:", values);
-};
-const onFinishFailed = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
 const Login = () => {
-  
-  
-  return (
-    <>
-      <Breadcrumb className="breadcrumbs" separator="\">
-        <Breadcrumb.Item>
-          <Link to="/">Main page</Link>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item>
-          <Link to="/login">Login page</Link>
-        </Breadcrumb.Item>
-      </Breadcrumb>
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  // Create the submit method.
+  const submit = async (e) => {
+    e.preventDefault();
+    const user = {
+      username: username,
+      password: password,
+    };
+    // Create the POST request
+    const { data } = await axios.post(
+      "http://localhost:8000/blog/token/",
+      user,
+      { headers: { "Content-Type": "application/json" } }
+    );
 
+    // Initialize the access & refresh token in localstorage.
+    localStorage.clear();
+    localStorage.setItem("access_token", data.access);
+    localStorage.setItem("refresh_token", data.refresh);
+    axios.defaults.headers.common["Authorization"] = `Bearer ${data["access"]}`;
+    window.location.href = "/post";
+  };
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "90vh",
+      }}
+    >
       <Form
+        className="FormLogin"
         name="basic"
+        onSubmit={submit}
         labelCol={{
           span: 8,
         }}
@@ -36,8 +52,6 @@ const Login = () => {
         initialValues={{
           remember: true,
         }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
         <Form.Item
@@ -45,16 +59,22 @@ const Login = () => {
           label="Username"
           rules={[
             {
-              type: 'username',
-              message: 'The input is not valid Username!',
+              type: "username",
+              message: "The input is not valid Username!",
             },
             {
               required: true,
-              message: 'Please input your Username!',
+              message: "Please input your Username!",
             },
           ]}
         >
-          <Input/>
+          <Input
+            name="username"
+            type="text"
+            value={username}
+            required
+            onChange={(e) => setUsername(e.target.value)}
+          />
         </Form.Item>
 
         <Form.Item
@@ -67,18 +87,12 @@ const Login = () => {
             },
           ]}
         >
-          <Input.Password/>
-        </Form.Item>
-
-        <Form.Item
-          name="remember"
-          valuePropName="checked"
-          wrapperCol={{
-            offset: 8,
-            span: 16,
-          }}
-        >
-          <Checkbox>Remember me</Checkbox>
+          <Input.Password
+            type="password"
+            value={password}
+            required
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </Form.Item>
 
         <Form.Item
@@ -87,15 +101,13 @@ const Login = () => {
             span: 16,
           }}
         >
-          <Button type="primary" htmlType="submit">
+          <Button className="submitButton" type="primary" htmlType="submit" onClick={submit} style={{marginRight: '10px'}}>
             Submit
           </Button>
+            Or <Link to="/registration">register now!</Link>
         </Form.Item>
       </Form>
-    </>
-  )
+    </div>
+  );
 };
-
-
-
 export default Login;

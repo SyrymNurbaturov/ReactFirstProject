@@ -39,3 +39,9 @@
     margin: "16px 0";
     margin-bottom: 1rem;
   }
+  .logoutLink{
+    color: #D2D2D2;
+  }
+  .post{
+    width: 100%;
+  }

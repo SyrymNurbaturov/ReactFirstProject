@@ -51,19 +51,14 @@ const LayoutComponents = (props) => {
             style={{ alignSelf: "center" }}
           />
         </Link>
-        <div className="login">
-          <Link className="loginLink" to="/login">
-            Login
-          </Link>
-        </div>
-        <div className="registration">
-          <Link className="registrationLink" to="/registration">
-            Registration
-          </Link>
-        </div>
-        <div>
+        <div className="post">
         <Link className="postLink" to="/post">
         Post
+      </Link>
+        </div>
+        <div >
+        <Link className="logoutLink" to="/logout">
+        Logout
       </Link>
         </div>
         <Breadcrumb />

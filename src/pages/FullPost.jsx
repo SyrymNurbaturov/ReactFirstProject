@@ -2,17 +2,37 @@ import React, {useEffect} from "react";
 import "../styles/FullPost.css";
 import axios from "axios";
 import { Pagination } from 'antd';
+import LayoutComponents from "../components/LayoutComponents";
 
 function FullPost() {
   const [post, setPost] = React.useState(null);
   const [page, setPage] = React.useState(1);
-  
+
+
   useEffect(() => {
-    const baseURL = `http://127.0.0.1:8000/blog/api/?page_size=${page}`;
-    axios.get(baseURL).then((response) => {
-      setPost(response.data);
-    });
+      if(localStorage.getItem('access_token') == null){                   
+          window.location.href = '/login'
+      }
+      else{
+        (async () => {
+          try {
+            const baseURL = `http://127.0.0.1:8000/blog/api/?page_size=${page}`;
+            axios.get(baseURL).then((response) => {
+              setPost(response.data);
+            });;
+         } catch (e) {
+           console.log('not auth')
+         }
+        })()};
   }, [page]);
+
+  // useEffect(() => {
+    
+  //   const baseURL = `http://127.0.0.1:8000/blog/api/?page_size=${page}`;
+  //   axios.get(baseURL).then((response) => {
+  //     setPost(response.data);
+  //   });
+  // }, [page]);
 
   function handlePage(activePage) {
     setPage(activePage)
@@ -21,7 +41,7 @@ function FullPost() {
 
   if (!post) return null;
   return (
-    <>
+    <LayoutComponents>
         {post.map((p, index) => {
           return (
             <div key={index}>
@@ -42,7 +62,7 @@ function FullPost() {
                 defaultCurrent={page}
                 total={11}
                 />
-    </>
+    </LayoutComponents>
   );
 }
 
