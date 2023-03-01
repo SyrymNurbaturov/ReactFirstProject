@@ -28,6 +28,8 @@ const Login = () => {
     window.location.href = "/post";
   };
   return (
+    <>
+    <div className="logo"></div>
     <div
       style={{
         display: "flex",
@@ -35,6 +37,7 @@ const Login = () => {
         justifyContent: "center",
         height: "90vh",
       }}
+      
     >
       <Form
         className="FormLogin"
@@ -108,6 +111,7 @@ const Login = () => {
         </Form.Item>
       </Form>
     </div>
+    </>
   );
 };
 export default Login;

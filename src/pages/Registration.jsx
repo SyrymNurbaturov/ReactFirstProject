@@ -40,7 +40,7 @@ const Registration = () => {
   const [form] = Form.useForm();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordconf, setPasswordconf] = useState("");
+  const [password2, setPassword2] = useState("");
   // const [errorMessage, setErrorMessage] = useState("");
   // Create the submit method.
   const submit = async (e) => {
@@ -48,7 +48,7 @@ const Registration = () => {
     const user = {
       username: username,
       password: password,
-      passwordconf: passwordconf,
+      password2: password2,
     };
     // Create the POST request
 
@@ -89,7 +89,7 @@ const Registration = () => {
       scrollToFirstError
     >
       <Form.Item
-        name="email"
+        name="username"
         label="Username"
         rules={[
           {
@@ -152,9 +152,9 @@ const Registration = () => {
         ]}
       >
         <Input.Password type="password"
-            value={passwordconf}
+            value={password2}
             required
-            onChange={(e) => setPasswordconf(e.target.value)}/>
+            onChange={(e) => setPassword2(e.target.value)}/>
             Enter the same password as before, for verification.
       </Form.Item>
       <Form.Item {...tailFormItemLayout}>
