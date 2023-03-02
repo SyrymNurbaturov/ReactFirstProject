@@ -40,17 +40,18 @@ const LayoutComponents = (props) => {
   return (
     <Layout>
       <Header className="header">
-        <div className="logo" />
+        <div className="logo">
         <Link to="/">
           <img
             src={logo}
             className="logoImage"
-            width="60"
-            height="50"
+            width="70"
+            height="60"
             alt="logo"
             style={{ alignSelf: "center" }}
           />
         </Link>
+        </div>
         <div className="post">
         <Link className="postLink" to="/post">
         Post

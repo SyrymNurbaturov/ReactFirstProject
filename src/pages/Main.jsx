@@ -16,7 +16,6 @@ const Main = () => {
           <Link to="/">Main page</Link>
         </Breadcrumb.Item>
       </Breadcrumb>
-
       <h1>Content</h1>
     </LayoutComponents>
   );

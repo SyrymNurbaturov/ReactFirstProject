@@ -4,6 +4,8 @@ import { Button,
     Input,} from "antd";
 import { Link } from "react-router-dom"
 import axios from "axios";
+import logo from "../logo512.png"
+
 
 const tailFormItemLayout = {
     wrapperCol: {
@@ -78,7 +80,22 @@ const Registration = () => {
       alignItems: "center",
       justifyContent: "center",
       height: "90vh",
+      paddingRight: "80px",
+      paddingLeft: "50px",
+      backgroundColor: "black"
     }}>
+      <div style={{border: "2px solid", padding:"30px", paddingRight: "40px", 
+        backgroundColor: "white"}}>
+      <div style={{paddingLeft: "230px"}}>
+      <img
+            src={logo}
+            className="logoImage"
+            width="192"
+            height="192"
+            alt="logo"
+            style={{ justifyContent: "center"}}
+          />
+      </div>
     <Form
       {...formItemLayout}
       form={form}
@@ -164,6 +181,7 @@ const Registration = () => {
         <Link to="/login">Back</Link>
       </Form.Item>
     </Form>
+    </div>
     </div>
     </>
   );

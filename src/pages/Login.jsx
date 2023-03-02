@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { Button, Form, Input } from "antd";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import logo from "../logo512.png"
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  
   // Create the submit method.
   const submit = async (e) => {
     e.preventDefault();
@@ -25,24 +27,36 @@ const Login = () => {
     localStorage.setItem("access_token", data.access);
     localStorage.setItem("refresh_token", data.refresh);
     axios.defaults.headers.common["Authorization"] = `Bearer ${data["access"]}`;
-    window.location.href = "/post";
+    window.location.href = "/";
   };
   return (
     <>
-    <div className="logo"></div>
     <div
       style={{
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         height: "90vh",
+        backgroundColor: "black"
       }}
-      
     >
+      <div style={{border: "2px solid", padding:"70px", 
+        backgroundColor: "white"}}>
+      <div style={{marginLeft: "50px"}}>
+      <img
+            src={logo}
+            className="logoImage"
+            width="192"
+            height="192"
+            alt="logo"
+            style={{ justifyContent: "center"}}
+          />
+      </div>
       <Form
-        className="FormLogin"
+        id="loginPage"
         name="basic"
         onSubmit={submit}
+
         labelCol={{
           span: 8,
         }}
@@ -76,8 +90,7 @@ const Login = () => {
             type="text"
             value={username}
             required
-            onChange={(e) => setUsername(e.target.value)}
-          />
+            onChange={(e) => setUsername(e.target.value)}/>
         </Form.Item>
 
         <Form.Item
@@ -110,6 +123,7 @@ const Login = () => {
             Or <Link to="/registration">register now!</Link>
         </Form.Item>
       </Form>
+      </div>
     </div>
     </>
   );

@@ -1,112 +1,118 @@
-// import {
-//     LaptopOutlined,
-//     NotificationOutlined,
-//     UserOutlined,
-//   } from "@ant-design/icons";
-//   import { Breadcrumb, Layout, Menu, theme } from "antd";
-//   import React from "react";
-//   import { Link } from "react-router-dom";
-//   import "../styles/LayoutComponents.css";
-//   import logo from "../logo.svg";
-//   const { Header, Content, Sider } = Layout;
-  
-//   const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
-//     (icon, index) => {
-//       const key = String(index + 1);
-//       return {
-//         key: `sub${key}`,
-//         icon: React.createElement(icon),
-//         label: `subnav ${key}`,
-//         children: new Array(4).fill(null).map((_, j) => {
-//           const subKey = index * 4 + j + 1;
-//           const post = <Link className="postLink" to="/post">
-//           Post
-//         </Link>
-//           return {
-//             post: post,
-//             key: subKey,
-//             label: `option${subKey}`,
-//           };
-//         }),
-      
-//       };
-//     }
-//   );
-//   const LayoutComponents = (props) => {
-//     const { children } = props;
-//     const {
-//       token: { colorBgContainer },
-//     } = theme.useToken();
-//     return (
-//       <Layout>
-//         <Header className="header">
-//           <div className="logo" />
-//           <Link to="/">
-//             <img
-//               src={logo}
-//               className="logoImage"
-//               width="60"
-//               height="50"
-//               alt="logo"
-//               style={{ alignSelf: "center" }}
-//             />
-//           </Link>
-//           <div className="login">
-//             <Link className="loginLink" to="/login">
-//               Login
-//             </Link>
-//           </div>
-//           <div className="registration">
-//             <Link className="registrationLink" to="/registration">
-//               Registration
-//             </Link>
-//           </div>
-//           <div>
-//           <Link className="postLink" to="/post">
-//           Post
-//         </Link>
-//           </div>
-//           <Breadcrumb />
-//         </Header>
-        
-//         <Layout>
-//           <Sider
-//             width={200}
-//             style={{
-//               background: colorBgContainer,
-//             }}
-//           >
-//             <Menu
-//               mode="inline"
-//               defaultSelectedKeys={["1"]}
-//               defaultOpenKeys={["sub1"]}
-//               style={{
-//                 height: "100%",
-//                 borderRight: 0,
-//               }}
-//               items={items2}
-//             />
-//           </Sider>
-//           <Layout
-//             style={{
-//               padding: "0 24px 24px",
-//             }}
-//           >
-  
-//             <Content
-//               style={{
-//                 padding: 24,
-//                 margin: 0,
-//                 minHeight: 280,
-//                 background: colorBgContainer,
-//               }}
-//             >
-//               {children}
-//             </Content>
-//           </Layout>
-//         </Layout>
-//       </Layout>
+// import React, { useState } from "react";
+// import { Button, Form, Input } from "antd";
+// import { Link } from "react-router-dom";
+// import axios from "axios";
+
+// const Login = () => {
+//   const [username, setUsername] = useState("");
+//   const [password, setPassword] = useState("");
+//   // Create the submit method.
+//   const submit = async (e) => {
+//     e.preventDefault();
+//     const user = {
+//       username: username,
+//       password: password,
+//     };
+//     // Create the POST request
+//     const { data } = await axios.post(
+//       "http://localhost:8000/blog/token/",
+//       user,
+//       { headers: { "Content-Type": "application/json" } }
 //     );
+
+//     // Initialize the access & refresh token in localstorage.
+//     localStorage.clear();
+//     localStorage.setItem("access_token", data.access);
+//     localStorage.setItem("refresh_token", data.refresh);
+//     axios.defaults.headers.common["Authorization"] = `Bearer ${data["access"]}`;
+//     window.location.href = "/post";
 //   };
-//   export default LayoutComponents;
-  
+//   return (
+//     <>
+//     <div className="loginPage">
+//     <div
+//       style={{
+//         display: "flex",
+//         alignItems: "center",
+//         justifyContent: "center",
+//         height: "90vh",
+//       }}
+      
+//     >
+//       <Form
+//         className="FormLogin"
+//         name="basic"
+//         onSubmit={submit}
+//         labelCol={{
+//           span: 8,
+//         }}
+//         wrapperCol={{
+//           span: 16,
+//         }}
+//         style={{
+//           maxWidth: 600,
+//         }}
+//         initialValues={{
+//           remember: true,
+//         }}
+//         autoComplete="off"
+//       >
+//         <Form.Item
+//           name="username"
+//           label="Username"
+//           rules={[
+//             {
+//               type: "username",
+//               message: "The input is not valid Username!",
+//             },
+//             {
+//               required: true,
+//               message: "Please input your Username!",
+//             },
+//           ]}
+//         >
+//           <Input
+//             name="username"
+//             type="text"
+//             value={username}
+//             required
+//             onChange={(e) => setUsername(e.target.value)}
+//           />
+//         </Form.Item>
+
+//         <Form.Item
+//           label="Password"
+//           name="password"
+//           rules={[
+//             {
+//               required: true,
+//               message: "Please input your password!",
+//             },
+//           ]}
+//         >
+//           <Input.Password
+//             type="password"
+//             value={password}
+//             required
+//             onChange={(e) => setPassword(e.target.value)}
+//           />
+//         </Form.Item>
+
+//         <Form.Item
+//           wrapperCol={{
+//             offset: 8,
+//             span: 16,
+//           }}
+//         >
+//           <Button className="submitButton" type="primary" htmlType="submit" onClick={submit} style={{marginRight: '10px'}}>
+//             Submit
+//           </Button>
+//             Or <Link to="/registration">register now!</Link>
+//         </Form.Item>
+//       </Form>
+//     </div>
+//     </div>
+//     </>
+//   );
+// };
+// export default Login;
