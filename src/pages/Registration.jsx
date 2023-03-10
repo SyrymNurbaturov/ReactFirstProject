@@ -41,6 +41,9 @@ const tailFormItemLayout = {
 const Registration = () => {
   const [form] = Form.useForm();
   const [username, setUsername] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   // const [errorMessage, setErrorMessage] = useState("");
@@ -51,6 +54,9 @@ const Registration = () => {
       username: username,
       password: password,
       password2: password2,
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
     };
     // Create the POST request
 
@@ -126,7 +132,64 @@ const Registration = () => {
             onChange={(e) => setUsername(e.target.value)}/>
             Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
       </Form.Item>
+      
+      <Form.Item
+        name="firstname"
+        label="Firstname"
+        rules={[
+          {
+            required: true,
+            message: 'Please input your first name!',
+            whitespace: true,
+          },
+        ]}
+      >
+        <Input name="firstname"
+            type="text"
+            value={firstName}
+            required
+            onChange={(e) => setFirstName(e.target.value)}/>
+      </Form.Item>
+      
+      <Form.Item
+        name="lastname"
+        label="Lastname"
+        rules={[
+          {
+            required: true,
+            message: 'Please input your last name!',
+            whitespace: true,
+          },
+        ]}
+      >
+        <Input name="lastname"
+            type="text"
+            value={lastName}
+            required
+            onChange={(e) => setLastName(e.target.value)}/>
+      </Form.Item>
 
+      <Form.Item
+        name="email"
+        label="E-mail"
+        rules={[
+          {
+            type: 'email',
+            message: 'The input is not valid E-mail!',
+          },
+          {
+            required: true,
+            message: 'Please input your E-mail!',
+          },
+        ]}
+      >
+        <Input name="email"
+            type="text"
+            value={email}
+            required
+            onChange={(e) => setEmail(e.target.value)}/>
+      </Form.Item>
+      
       <Form.Item
         name="password"
         label="Password"

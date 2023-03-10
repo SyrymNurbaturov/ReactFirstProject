@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/SuccessReg.css"
+import "../styles/SuccessReg.css";
 
 function SuccessReg() {
   return (
     <>
-    <div className="backgroundCol"></div>
       <div className="container">
         <div className="row">
           <div className="col-md-5">
@@ -19,7 +18,7 @@ function SuccessReg() {
           </div>
         </div>
       </div>
-      </>
+    </>
   );
 }
 

@@ -12,8 +12,8 @@
     height: 50px;
 }
 
-.FormLogin{
-    box-shadow: 0 0 250px #000;
-  text-align: center;
-  padding: 4rem 2rem;
-}
+#loginPage {
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 5px 10px #888888;
+  }

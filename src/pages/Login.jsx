@@ -7,7 +7,6 @@ import logo from "../logo512.png"
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  
   // Create the submit method.
   const submit = async (e) => {
     e.preventDefault();
@@ -20,12 +19,13 @@ const Login = () => {
       "http://localhost:8000/blog/token/",
       user,
       { headers: { "Content-Type": "application/json" } }
-    );
+    )
 
     // Initialize the access & refresh token in localstorage.
     localStorage.clear();
     localStorage.setItem("access_token", data.access);
     localStorage.setItem("refresh_token", data.refresh);
+    localStorage.setItem("username", username)
     axios.defaults.headers.common["Authorization"] = `Bearer ${data["access"]}`;
     window.location.href = "/";
   };

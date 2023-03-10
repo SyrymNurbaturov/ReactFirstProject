@@ -1,38 +1,16 @@
 import {
-  LaptopOutlined,
-  NotificationOutlined,
-  UserOutlined,
+  HomeOutlined,
+  UserOutlined,UnorderedListOutlined, PlusOutlined
 } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/LayoutComponents.css";
 import logo from "../logo.svg";
 const { Header, Content, Sider } = Layout;
 
-const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
-  (icon, index) => {
-    const key = String(index + 1);
-    return {
-      key: `sub${key}`,
-      icon: React.createElement(icon),
-      label: `subnav ${key}`,
-      children: new Array(4).fill(null).map((_, j) => {
-        const subKey = index * 4 + j + 1;
-        const post = <Link className="postLink" to="/post">
-        Post
-      </Link>
-        return {
-          post: post,
-          key: subKey,
-          label: `option${subKey}`,
-        };
-      }),
-    
-    };
-  }
-);
 const LayoutComponents = (props) => {
+  const navigate = useNavigate()
   const { children } = props;
   const {
     token: { colorBgContainer },
@@ -52,11 +30,6 @@ const LayoutComponents = (props) => {
           />
         </Link>
         </div>
-        <div className="post">
-        <Link className="postLink" to="/post">
-        Post
-      </Link>
-        </div>
         <div >
         <Link className="logoutLink" to="/logout">
         Logout
@@ -73,14 +46,15 @@ const LayoutComponents = (props) => {
           }}
         >
           <Menu
-            mode="inline"
-            defaultSelectedKeys={["1"]}
-            defaultOpenKeys={["sub1"]}
-            style={{
-              height: "100%",
-              borderRight: 0,
+            onClick={({key}) =>{
+              navigate(key)
             }}
-            items={items2}
+            items={[
+              {label: "Home", key:"/", icon: <HomeOutlined/>},
+              {label: "Profile", key:"/profile", icon: <UserOutlined/>},
+              {label: "Post", key:"/post", icon: <UnorderedListOutlined/>},
+              {label: "Create Post", key:"/create", icon: <PlusOutlined />}
+            ]}
           />
         </Sider>
         <Layout

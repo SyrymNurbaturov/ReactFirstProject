@@ -6,8 +6,7 @@ import LayoutComponents from "../components/LayoutComponents";
 
 function FullPost() {
   const [post, setPost] = React.useState(null);
-  const [page, setPage] = React.useState(1);
-
+  const [page, setPage] = React.useState(1); 
 
   useEffect(() => {
       if(localStorage.getItem('access_token') == null){                   
@@ -25,7 +24,6 @@ function FullPost() {
          }
         })()};
   }, [page]);
-
   // useEffect(() => {
     
   //   const baseURL = `http://127.0.0.1:8000/blog/api/?page_size=${page}`;
@@ -38,7 +36,7 @@ function FullPost() {
     setPage(activePage)
   }
   
-
+console.log(post)
   if (!post) return null;
   return (
     <LayoutComponents>
@@ -60,7 +58,7 @@ function FullPost() {
         })}
         <Pagination onChange={handlePage}
                 defaultCurrent={page}
-                total={11}
+                total={40}
                 />
     </LayoutComponents>
   );
