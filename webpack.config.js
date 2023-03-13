@@ -14,6 +14,15 @@ module.exports = {
         filename: production ? '[main].[contenthash].js' : '[main].js',
         publicPath: '/'
     },
+    resolve: {
+        alias: {
+          components: path.resolve(__dirname, 'src/components'),
+          pages: path.resolve(__dirname, 'src/pages'),
+          styles: path.resolve(__dirname, 'src/styles'),
+          store: path.resolve(__dirname, 'src/store')
+        },
+        extensions: ['.js', '.jsx'],
+      },
     module: {
         rules: [
             {
