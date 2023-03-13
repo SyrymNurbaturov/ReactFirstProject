@@ -21,7 +21,7 @@ module.exports = {
           styles: path.resolve(__dirname, 'src/styles/'),
           store: path.resolve(__dirname, 'src/store/')
         },
-        extensions: ['*', '.js', '.jsx', '.json'],
+        extensions: ['*', '.js', '.jsx', '.json', '.less'],
       },
     module: {
         rules: [
@@ -47,6 +47,30 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             sourceMap: !production
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.less$/i,
+                use: [
+                    production ? MiniCssExtractPlugin.loader : 'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: !production
+                        }
+                    },
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            sourceMap: !production,
+                            lessOptions: {
+                                modifyVars: {
+                                    'primary-color': '#1890ff'
+                                },
+                                javascriptEnabled: true,
+                            }
                         }
                     }
                 ]
