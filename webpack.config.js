@@ -1,5 +1,6 @@
 const webpack =  require("webpack");
 const path = require("path");
+const Dotenv = require("dotenv-webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { NetlifyPlugin } = require("netlify-webpack-plugin");
@@ -60,7 +61,14 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             filename: production ? '[main].[contenthash].css' : '[main].css'
-        })
+        }),
+        new Dotenv()
     ],
+    devServer: {
+        port: 3001,
+        hot: true,
+        historyApiFallback: true
+    },
+    devtool: production ? "source-map" : "inline-source-map",
     mode: production ? 'production' : 'development'
 }
