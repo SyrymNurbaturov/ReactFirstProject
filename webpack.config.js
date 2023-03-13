@@ -50,6 +50,19 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            {
+                test: /\.(png|jpg|jpeg|JPG|svg|gif|mp4|webm)?$/,
+                loader: require.resolve('url-loader'),
+                options: {
+                    limit: 8192,
+                    name: 'static/media/[name].[hash:8].[ext]'
+                }
+            },
+            {
+                test: /\.(jpg|png|gif|svg)$/,
+                loader: 'image-webpack-loader',
+                enforce: 'pre'
             }
         ]
     },
