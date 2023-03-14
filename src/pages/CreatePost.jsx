@@ -28,9 +28,8 @@ const CreatePost = () => {
           body: body,
         };
         // Create the POST request
-    
         await axios.post(
-          "http://takinada1.pythonanywhere.com/blog/api/add/",
+          "https://takinada1.pythonanywhere.com/blog/api/add/",
           user,
           { headers: { "Content-Type": "application/json" } }
         ).then((response)=>{

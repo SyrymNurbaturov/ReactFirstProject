@@ -12,7 +12,7 @@ export const Profile = () => {
     else{
       (async () => {
         try {
-          const baseURL = `http://takinada1.pythonanywhere.com/blog/current/${username}/`;
+          const baseURL = `https://takinada1.pythonanywhere.com/blog/current/${username}/`;
           axios.get(baseURL).then((response) => {
             setResponseData(response.data);
            });

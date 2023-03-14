@@ -16,7 +16,7 @@ const Login = () => {
     };
     // Create the POST request
     const { data } = await axios.post(
-      "http://takinada1.pythonanywhere.com/blog/token/",
+      "https://takinada1.pythonanywhere.com/blog/token/",
       user,
       { headers: { "Content-Type": "application/json" } }
     )

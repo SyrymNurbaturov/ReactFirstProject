@@ -5,7 +5,7 @@ export const Logout = () => {
        (async () => {
          try {
                 await  
-                 axios.post('http://localhost:8000/blog/logout/',{
+                 axios.post('https://takinada1.pythonanywhere.com/blog/logout/',{
                  refresh_token:localStorage.getItem('refresh_token')
                  } ,{headers: {'Content-Type': 'application/json'}},  
                  {withCredentials: true});
