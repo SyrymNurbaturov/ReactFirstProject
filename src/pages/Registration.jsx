@@ -61,7 +61,7 @@ const Registration = () => {
     // Create the POST request
 
     await axios.post(
-      "http://localhost:8000/blog/register/",
+      "http://takinada1.pythonanywhere.com/blog/register/",
       user,
       { headers: { "Content-Type": "application/json" } }
     ).then((response)=>{

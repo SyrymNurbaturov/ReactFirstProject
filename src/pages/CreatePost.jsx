@@ -30,7 +30,7 @@ const CreatePost = () => {
         // Create the POST request
     
         await axios.post(
-          "http://localhost:8000/blog/api/add/",
+          "http://takinada1.pythonanywhere.com/blog/api/add/",
           user,
           { headers: { "Content-Type": "application/json" } }
         ).then((response)=>{

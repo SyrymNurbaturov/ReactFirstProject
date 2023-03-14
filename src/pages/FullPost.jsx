@@ -15,7 +15,7 @@ function FullPost() {
       else{
         (async () => {
           try {
-            const baseURL = `http://127.0.0.1:8000/blog/api/?page_size=${page}`;
+            const baseURL = `http://takinada1.pythonanywhere.com/blog/api/?page_size=${page}`;
             axios.get(baseURL).then((response) => {
               setPost(response.data);
             });;
