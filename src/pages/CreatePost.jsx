@@ -19,13 +19,14 @@ const CreatePost = () => {
     const [form] = Form.useForm();
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
-
+    const [publish] = useState(null)
     const submit = async (e) => {
         e.preventDefault();
         const user = {
           author: username,
           title: title,
           body: body,
+          publish: publish,
         };
         // Create the POST request
         await axios.post(
